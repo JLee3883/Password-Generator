@@ -11,7 +11,7 @@
 //     3.) Click OK to confirm including lowercase characters. (user has choice to OK or cancel)
 //     4.) Click OK to confirm including upperercase characters. (user has choice to OK or cancel)
 // Once user clicks OK, a random password containing all the chosen characters will automatically generate in the box.    
-
+//see and follow the path!!!
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -25,6 +25,8 @@ function writePassword() {
   passwordText.value = password;
 
 }
+function generatePassword() {
 
+}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
