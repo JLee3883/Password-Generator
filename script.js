@@ -12,8 +12,6 @@
 //     4.) Click OK to confirm including upperercase characters. (user has choice to OK or cancel)
 // Once user clicks OK, a random password containing all the chosen characters will automatically generate in the box.    
 
-// testing123
-
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
