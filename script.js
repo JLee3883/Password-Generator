@@ -1,17 +1,5 @@
-// Pseudo Code
-
-//need choices declared outside the if statemnt so they can be concatenated upon condition.
-//start functions to the generate button that asks for user input. validation??? then continuation once user input is validated.
-//vars, functions, ifs, else ifs, else 
-//want to conpile the results - if user confirms upper and numbers, results would be combined array of upper and numbers. if true, creat me a password starting point that is combined upper array with the numbers array.
-//create combined array variable (whatever the user selects)
-//loop over combined array the number of times = to password length
-//each time we loop over, we are adding the random character to that "results"
-//return the results from this generate function to line 40 (var password=)
-
-
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+var charLength = 10;
+var userChoice = [];
 
 //All possible characters that would be available
 var special = ["~","!","@","#","$","%","^","&","*","_","+","=","<",">","?",];
@@ -24,94 +12,101 @@ var confirmNum;
 var confirmUpper;
 var confirmLower;
 
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+
 // Write password to the #password input
 function writePassword() {
   var correctPrompts = getPrompts();
   var passwordText = document.querySelector("#password");
 
   if (correctPrompts) {
-  var password = generatePassword();
-  passwordText.value = password;
+  var Password = generatePassword();
+  passwordText.value = Password;
   } else {
     passwordText.value = "";
   }
 }
-function generatePassword() {
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
-var charLength = window.prompt("How many characters would you like your password to contain? Please choose a number between 8 and 128")
-
-var confirmNum = window.confirm("Do you want to include numbers?")
-console.log(confirmNum);
+function generatePassword() {    
+  //Generate password based on prompts
+  var password = "";
+  for(var i = 0; i < charLength; i++) {
+      var random = Math.floor(Math.random() * userChoice.length)
+      password = password + userChoice[random];
+  }
+  return password;  
 }
-
+  //Get user input
 function getPrompts(){ 
   userChoice = [];
   charLength = parseInt(prompt("How many characters long do you want your password be? Please input a number between 8 - 128."));
   
   if(isNaN(charLength) || charLength < 8 || charLength > 128) {
-      alert("Character length must be 8 to 128 digits. Please input a number between 8 - 128.");
-      return false;
+    alert("Character length must be 8 to 128 digits. Please input a number between 8 - 128.");
+    return false;
   
   //Validating user inputs
-} else {
-  confirmSpecial = confirm("Do you want your password to contain Special Characters?");
-  confirmNum = confirm("Do you want your password to contain Numbers?");
-  confirmUpper = confirm("Do you want your password to contain Uppercase Letters?");
-  confirmLower = confirm("Do you want your password to contain Lowercase Letters?");
-};
+  } else {
+    confirmSpecial = confirm("Do you want your password to contain Special Characters?");
+    confirmNum = confirm("Do you want your password to contain Numbers?");
+    confirmUpper = confirm("Do you want your password to contain Uppercase Letters?");
+    confirmLower = confirm("Do you want your password to contain Lowercase Letters?");
+  };
   // If no options for the password was chosen
   if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
     userChoice = alert("No options were chosen.");
-
   }
-  //Else if combination depending user option selections
-  else if (confirmSpecial) {
-      userChoice = special;
-  }
-  else if (confirmNum) {
-      userChoice = numbers;
-  }
-  else if (confirmLower) {
-      userChoice = lower;
-  }
-  else if (confirmUpper) {
-      userChoice = upper;
-  }
-  else if (confirmSpecial && confirmNum) {
-      userChoice = special.concat(numbers);
-
-  } else if (confirmSpecial && confirmLower) {
-      userChoice = special.concat(lower);
-
-  } else if (confirmSpecial && confirmUpper) {
-      userChoice = special.concat(upper);
-  }
-  else if (confirmLower && confirmNum) {
-      userChoice = lower.concat(numbers);
-
-  } else if (confirmLower && confirmUpper) {
-      userChoice = lower.concat(upper);
-
-  } else if (confirmNum && confirmUpper) {
-      userChoice = numbers.concat(upper);
-  }
-  else if (confirmSpecial && confirmNum && confirmUpper) {
-      userChoice = special.concat(numbers, upper);
-  }
-  else if (confirmSpecial && confirmNum && confirmLower) {
-      userChoice = special.concat(numbers, lower);
-  }
-  else if (confirmSpecial && confirmLower && confirmUpper) {
-      userChoice = special.concat(lower, upper);
-  }
-  else if (confirmNum && confirmLower && confirmUpper) {
-      userChoice = numbers.concat(lower, upper);
-  }
-  else if (specialCharArr && confirmNum && confirmUpper && confirmLower) {
+    //Else if combination depending user option selections
+    else if (specialCharArr && confirmNum && confirmUpper && confirmLower) {
       userChoice = special.concat(numbers, upper, lower);
+    }
+    else if (confirmSpecial && confirmNum && confirmUpper) {
+      userChoice = special.concat(numbers, upper);
+    }
+    else if (confirmSpecial && confirmNum && confirmLower) {
+      userChoice = special.concat(numbers, lower);
+    }
+    else if (confirmSpecial && confirmLower && confirmUpper) {
+      userChoice = special.concat(lower, upper);
+    }
+    else if (confirmNum && confirmLower && confirmUpper) {
+      userChoice = numbers.concat(lower, upper);
+    }
+    else if (confirmSpecial && confirmNum) {
+      userChoice = special.concat(numbers);
+      
+    } else if (confirmSpecial && confirmLower) {
+      userChoice = special.concat(lower);
+      
+    } else if (confirmSpecial && confirmUpper) {
+      userChoice = special.concat(upper);
+    }
+    else if (confirmLower && confirmNum) {
+      userChoice = lower.concat(numbers); 
+    }
+    else if (confirmLower && confirmUpper) {
+      userChoice = lower.concat(upper); 
+    }
+    else if (confirmNum && confirmUpper) {
+      userChoice = numbers.concat(upper);
+    }
+    else if (confirmSpecial) {
+      userChoice = special;
+    }
+    else if (confirmNum) {
+      userChoice = numbers;
+    }
+    else if (confirmLower) {
+      userChoice = lower;
+    }
+    else if (confirmUpper) {
+      userChoice = upper;
+    }    
+    return true;
   }
-  return true;
-}
 
 
 
@@ -124,7 +119,5 @@ function getPrompts(){
 
 
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 
