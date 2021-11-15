@@ -105,7 +105,7 @@ function getPrompts(){
       userChoice = numbers.concat(lower, upper);
   }
   else if (specialCharArr && confirmNum && confirmUpper && confirmLower) {
-      userChoice = specia.concat(numbers, upper, lower);
+      userChoice = special.concat(numbers, upper, lower);
   }
   return true;
 }
