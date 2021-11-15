@@ -43,7 +43,7 @@ console.log(confirmNum);
 
 function getPrompts(){ 
   userChoice = [];
-  charLength = parseInt(prompt("How many characters long must your password be? Please input a number between 8 - 128."));
+  charLength = parseInt(prompt("How many characters long do you want your password be? Please input a number between 8 - 128."));
   
   if(isNaN(charLength) || charLength < 8 || charLength > 128) {
       alert("Character length must be 8 to 128 digits. Please input a number between 8 - 128.");
@@ -56,6 +56,57 @@ function getPrompts(){
   confirmUpper = confirm("Do you want your password to contain Uppercase Letters?");
   confirmLower = confirm("Do you want your password to contain Lowercase Letters?");
 };
+  // If no options for the password was chosen
+  if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
+    userChoice = alert("No options were chosen.");
+
+  }
+  //Else if combination depending user option selections
+  else if (confirmSpecial) {
+      userChoice = special;
+  }
+  else if (confirmNum) {
+      userChoice = numbers;
+  }
+  else if (confirmLower) {
+      userChoice = lower;
+  }
+  else if (confirmUpper) {
+      userChoice = upper;
+  }
+  else if (confirmSpecial && confirmNum) {
+      userChoice = special.concat(numbers);
+
+  } else if (confirmSpecial && confirmLower) {
+      userChoice = special.concat(lower);
+
+  } else if (confirmSpecial && confirmUpper) {
+      userChoice = special.concat(upper);
+  }
+  else if (confirmLower && confirmNum) {
+      userChoice = lower.concat(numbers);
+
+  } else if (confirmLower && confirmUpper) {
+      userChoice = lower.concat(upper);
+
+  } else if (confirmNum && confirmUpper) {
+      userChoice = numbers.concat(upper);
+  }
+  else if (confirmSpecial && confirmNum && confirmUpper) {
+      userChoice = special.concat(numbers, upper);
+  }
+  else if (confirmSpecial && confirmNum && confirmLower) {
+      userChoice = special.concat(numbers, lower);
+  }
+  else if (confirmSpecial && confirmLower && confirmUpper) {
+      userChoice = special.concat(lower, upper);
+  }
+  else if (confirmNum && confirmLower && confirmUpper) {
+      userChoice = numbers.concat(lower, upper);
+  }
+  else if (specialCharArr && confirmNum && confirmUpper && confirmLower) {
+      userChoice = specia.concat(numbers, upper, lower);
+  }
   return true;
 }
 
