@@ -1,5 +1,5 @@
 // Pseudo Code
-// // put user input vairables:
+
 // put password variable values like:special characters,numeric characters,alphabetical characters,lower and upper JUST PUT ALL OF THE VARIABLES THAT YOU KNOW THAT YOU WILL NEED.
 //need choices declared outside the if statemnt so they can be concatenated upon condition.
 //convert letter to uppercase
