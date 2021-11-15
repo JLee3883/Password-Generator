@@ -26,12 +26,15 @@ var confirmLower;
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var correctPrompts = getPrompts();
   var passwordText = document.querySelector("#password");
 
-  // if(!password) return
+  if (correctPrompts) {
+  var password = generatePassword();
   passwordText.value = password;
-
+  } else {
+    passwordText.value = "";
+  }
 }
 function generatePassword() {
 
