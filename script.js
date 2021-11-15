@@ -47,71 +47,38 @@ function getPrompts(){
   if(isNaN(charLength) || charLength < 8 || charLength > 128) {
     alert("Character length must be 8 to 128 digits. Please input a number between 8 - 128.");
     return false;
-  
+  }
   //Validating user inputs
-  } else {
+  else {
     confirmSpecial = confirm("Do you want your password to contain Special Characters?");
     confirmNum = confirm("Do you want your password to contain Numbers?");
     confirmUpper = confirm("Do you want your password to contain Uppercase Letters?");
     confirmLower = confirm("Do you want your password to contain Lowercase Letters?");
   };
   // If no options for the password was chosen
-  if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
-    userChoice = alert("No options were chosen.");
-  }
-    //Else if combination depending user option selections
-    else if (specialCharArr && confirmNum && confirmUpper && confirmLower) {
-      userChoice = special.concat(numbers, upper, lower);
+    if (!confirmSpecial && !confirmNum && !confirmUpper && !confirmLower) {
+    alert("No options were chosen.");
+    return false;
     }
-    else if (confirmSpecial && confirmNum && confirmUpper) {
-      userChoice = special.concat(numbers, upper);
-    }
-    else if (confirmSpecial && confirmNum && confirmLower) {
-      userChoice = special.concat(numbers, lower);
-    }
-    else if (confirmSpecial && confirmLower && confirmUpper) {
-      userChoice = special.concat(lower, upper);
-    }
-    else if (confirmNum && confirmLower && confirmUpper) {
-      userChoice = numbers.concat(lower, upper);
-    }
-    else if (confirmSpecial && confirmNum) {
-      userChoice = special.concat(numbers);
-      
-    } else if (confirmSpecial && confirmLower) {
-      userChoice = special.concat(lower);
-      
-    } else if (confirmSpecial && confirmUpper) {
-      userChoice = special.concat(upper);
-    }
-    else if (confirmLower && confirmNum) {
-      userChoice = lower.concat(numbers); 
-    }
-    else if (confirmLower && confirmUpper) {
-      userChoice = lower.concat(upper); 
-    }
-    else if (confirmNum && confirmUpper) {
-      userChoice = numbers.concat(upper);
-    }
-    else if (confirmSpecial) {
-      userChoice = special;
-    }
-    else if (confirmNum) {
-      userChoice = numbers;
-    }
-    else if (confirmLower) {
-      userChoice = lower;
-    }
-    else if (confirmUpper) {
-      userChoice = upper;
-    }    
+    if (confirmSpecial) {
+      userChoicePush(special)
+     }
+     if (confirmNum) {
+       userChoicePush(numbers)
+     }
+     if (confirmUpper) {
+       userChoicePush(upper)
+     }
+     if (confirmLower) {
+       userChoicePush(lower)
+     } 
     return true;
+}
+function userChoicePush(array){
+  for (var i = 0; i < array.length; i++){
+    userChoice.push(array[i])
   }
-
-
-
-
-
+}
 
 
 
